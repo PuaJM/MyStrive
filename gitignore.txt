@@ -1,0 +1,46 @@
+Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+/target/
+/dist/
+/build/
+/nbproject/private/
+/nbproject/build-impl.xml
+/nbproject/project.properties
+/nbproject/project.xml
+.idea/ # If you ever use IntelliJ
+.classpath
+.project
+.settings/
+*.log
+*.swp
+*.swo
+
+# Maven (if applicable)
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Node.js (if you ever use npm/node in the project)
+node_modules/
+npm-debug.log
+
+# IDE specific
+*.iml
+.DS_Store
+Thumbs.db
+
+# Database related (if you have local DB files)
+*.sql.bak
+*.dump
+*.mv.db # H2 database file

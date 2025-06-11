@@ -1,0 +1,17 @@
+# Use the official MySQL 8.0 image
+FROM mysql:8.0
+
+# Set environment variables for MySQL root password and database name
+# These are used to automatically create the database on first run.
+ENV MYSQL_ROOT_PASSWORD=@StrongPassword1234 # CHANGE THIS to a strong password! Must match root password in init.sql if used.
+ENV MYSQL_DATABASE=mystrive_db
+
+# Copy the initialization SQL script into the entrypoint directory.
+# This script will be executed automatically when the container starts for the first time.
+COPY ./init.sql /docker-entrypoint-initdb.d/
+
+# Expose the default MySQL port
+EXPOSE 3306
+
+# Command to run MySQL (default for this image)
+CMD ["mysqld"]

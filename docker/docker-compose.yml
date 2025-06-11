@@ -1,0 +1,42 @@
+version: '3.8' # Specify the Docker Compose file format version
+
+services:
+  # Web application service (Tomcat with MyStrive WAR)
+  web:
+    build:
+      context: . # Build context is the current directory (MyStrive/docker/)
+      dockerfile: Dockerfile.web # Use the Dockerfile.web
+    ports:
+      - "8080:8080" # Map host port 8080 to container port 8080
+    depends_on:
+      - db # Ensure the database service starts before the web service
+    environment:
+      # These environment variables are for your information, not directly consumed by Java app
+      # Java app connects using JDBC_URL in DBConnection.java which refers to 'db' service name.
+      MYSQL_HOST: db # Hostname for MySQL service within the Docker network
+      MYSQL_DATABASE: mystrive_db
+      MYSQL_USER: mystrive_user
+      MYSQL_PASSWORD: mystrive_password
+    restart: unless-stopped # Always restart unless explicitly stopped
+
+  # Database service (MySQL)
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db # Use the Dockerfile.db
+    environment:
+      # **CHANGE THIS:** Set a strong password for the MySQL root user.
+      # This must match the MYSQL_ROOT_PASSWORD in your Dockerfile.db.
+      MYSQL_ROOT_PASSWORD: @StrongPassword1234 # <--- CHANGE THIS
+      MYSQL_DATABASE: mystrive_db
+      MYSQL_USER: mystrive_user # Matches DB_USERNAME in DBConnection.java
+      MYSQL_PASSWORD: mystrive_password # Matches DB_PASSWORD in DBConnection.java
+    volumes:
+      - db_data:/var/lib/mysql # Persist database data to a named volume
+    ports:
+      - "3307:3306" # Optional: Map host port 3307 to container port 3306 for external tools like Workbench
+    restart: unless-stopped # Always restart unless explicitly stopped
+
+# Define named volumes for data persistence
+volumes:
+  db_data: # Data for MySQL database

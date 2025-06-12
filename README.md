@@ -99,23 +99,6 @@ To stop the running Docker containers without removing the images or database vo
     ```
     If you want to remove everything (containers, networks, images, and volumes), use `docker-compose down -v --rmi all`.
 
-## Project Structure
-
-```
-MyStrive/
-├── dist/
-│   └── MyStrive.war         # Compiled Java web application archive
-├── docker/
-│   ├── Dockerfile.web       # Dockerfile for the Tomcat/Java web app image
-│   ├── Dockerfile.db        # Dockerfile for the MySQL database image
-│   ├── docker-compose.yml   # Docker Compose configuration for services
-│   └── init.sql             # SQL script to initialize the MySQL database schema and data
-├── src/                     # Your NetBeans Java source code (e.g., .java files)
-├── web/                     # Web content for NetBeans (e.g., .jsp, HTML, CSS, JS files)
-├── nbproject/               # NetBeans IDE project configuration files
-├── README.md                # This README file
-└── .gitignore               # Git ignore file for version control
-```
 
 ## Database Configuration
 

@@ -13,10 +13,16 @@ import java.util.logging.Logger;
 
 public class DBConnection {
 
-    // Database connection parameters
-private static final String JDBC_URL = "jdbc:mysql://db:3306/mystrive_db?useSSL=false&serverTimezone=UTC";
-private static final String DB_USERNAME = "mystrive_user"; // Must match MYSQL_USER in docker-compose.yml
-private static final String DB_PASSWORD = "mystrive_password"; // Must match MYSQL_PASSWORD in docker-compose.yml
+// Database connection parameters for docker
+//private static final String JDBC_URL = "jdbc:mysql://db:3306/mystrive_db?useSSL=false&serverTimezone=UTC"; 
+//private static final String DB_USERNAME = "mystrive_user"; // Must match MYSQL_USER in docker-compose.yml
+//private static final String DB_PASSWORD = "mystrive_password"; // Must match MYSQL_PASSWORD in docker-compose.yml
+
+// Database connection parameters local hosts
+private static final String JDBC_URL = "jdbc:mysql://localhost/mystrive_db?useSSL=false&serverTimezone=UTC";
+private static final String DB_USERNAME = "root";
+private static final String DB_PASSWORD = "admin";
+
 
     // JDBC Driver Name
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
